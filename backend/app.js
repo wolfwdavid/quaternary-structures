@@ -15,10 +15,10 @@ app.listen(PORT, () => console.log(`Server running on http://localhost:${PORT}`)
 import React from 'react';
 import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
 import Navbar from './components/Navbar';
-import Home from './pages/Home';
+import Home from '../pages/Home';
 import Proteins from './pages/Proteins';
-import AddProtein from './pages/AddProtein';
-import Visualize from './pages/Visualize';
+import AddProtein from '../pages/AddProtein';
+import Visualize from '../pages/Visualize';
 
 function App() {
   return (
