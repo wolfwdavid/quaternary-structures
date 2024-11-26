@@ -1,37 +1,16 @@
 const express = require('express');
+const path = require('path');
+
 const app = express();
 
-// Middleware
-app.use(express.json());
+// Serve static files from the frontend directory
+app.use(express.static(path.join(__dirname, '../frontend')));
 
-// Routes
-app.get('/', (req, res) => {
-  res.send('Server is running!');
+// Handle all routes and send the index.html file
+app.get('*', (req, res) => {
+  res.sendFile(path.join(__dirname, '../frontend', 'index.html'));
 });
 
 // Start Server
 const PORT = process.env.PORT || 5000;
 app.listen(PORT, () => console.log(`Server running on http://localhost:${PORT}`));
-import React from 'react';
-import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
-import Navbar from './components/Navbar';
-import Home from '../pages/Home';
-import Proteins from './pages/Proteins';
-import AddProtein from '../pages/AddProtein';
-import Visualize from '../pages/Visualize';
-
-function App() {
-  return (
-    <Router>
-      <Navbar />
-      <Routes>
-        <Route path="/" element={<Home />} />
-        <Route path="/proteins" element={<Proteins />} />
-        <Route path="/add-protein" element={<AddProtein />} />
-        <Route path="/visualize" element={<Visualize />} />
-      </Routes>
-    </Router>
-  );
-}
-
-export default App;
